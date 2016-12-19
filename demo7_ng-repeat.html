@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="libs/dist/css/bootstrap.css"/>
+		<style type="text/css">
+			li{list-style: none;}
+		</style>
+	</head>
+	<body ng-controller="myCtr">
+		<!--<ul>
+			<li ng-repeat="province in provinces">
+				{{$index+1}}{{province.name}}
+				<ul>
+					<li ng-repeat="city in province.cities">
+						{{$index+1}}{{city.name}}
+					</li>
+				</ul>
+			</li>	
+		</ul>-->
+		
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel {{$index==0?'panel-danger':'panel-primary'}} col-xs-12 col-sm-6 col-md-4" ng-repeat="province in provinces">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="true" aria-controls="collapseOne">
+			           <span class="badge">{{$index+1}}</span>
+			          {{province.name}}
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapse{{$index}}" class="panel-collapse collapse {{$index==0?'in':''}}" role="tabpanel" aria-labelledby="headingOne">
+			      <div class="panel-body">
+			        <ul class="list-group">
+					  <li class="list-group-item" ng-repeat="city in province.cities">
+					    <span class="badge">{{$index+1}}</span>
+					    {{city.name}}
+					  </li>
+					</ul>
+			      </div>
+			    </div>
+			  </div>
+			  
+			  
+		</div>
+		
+		
+		
+		
+		
+	</body>
+	<script src="libs/dist/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="libs/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="libs/angular.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    	var app=angular.module("myApp",[]);
+       app.controller("myCtr",function($scope){
+       	   var provinces=[
+       	       {
+	       	       	"name":"浙江",
+	       	       	"cities":[
+	       	       	    {"name":"金华"},
+	       	       	    {"name":"杭州"},
+	       	       	    {"name":"温州"},
+	       	       	]
+       	       },
+       	       {
+       	       	   "name":"湖北",
+	       	       	"cities":[
+	       	       	    {"name":"武汉"},
+	       	       	    {"name":"黄冈"},
+	       	       	    {"name":"温州"},
+	       	       	]
+       	       },
+       	       {
+       	       	    "name":"江苏",
+	       	       	"cities":[
+	       	       	    {"name":"南京"},
+	       	       	    {"name":"徐州"},
+	       	       	    {"name":"连云港"},
+	       	       	]
+       	       }
+       	   ]   	  
+       	  $scope.provinces=provinces;
+       });
+       
+    </script>
+</html>
